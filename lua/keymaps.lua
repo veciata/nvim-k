@@ -11,6 +11,19 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+-- Toggle Neotree
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', { desc = 'Toggle Neotree' })
+vim.keymap.set('n', '<leader>o', function()
+  if vim.bo.filetype == 'neo-tree' then
+    vim.cmd.wincmd 'p'
+  else
+    vim.cmd.Neotree 'focus'
+  end
+end, { desc = 'Toggle Explorer Focus' })
+
+--neogit
+vim.api.nvim_set_keymap('n', '<leader>g', ':Neogit<CR>', { noremap = true, silent = true })
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -47,5 +60,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- custom
+local function open_w3m_localhost()
+  vim.fn.system 'w3m localhost:8085'
+end
+
+--quit
+vim.api.nvim_set_keymap('n', '<C-q>', ':confirm quit<CR>', { noremap = true, silent = true })
 
 -- vim: ts=2 sts=2 sw=2 et
