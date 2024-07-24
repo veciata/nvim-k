@@ -52,7 +52,7 @@ return {
             icon = ' ',
             desc = 'Find Word         ',
             desc_hl = 'String',
-            key = 'sw',
+            key = 'sg',
             key_hl = 'Number',
             key_format = ' <leader>%s', -- include leader key
             action = 'Telescope live_grep',
